@@ -7,7 +7,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html>
       <head />
-      <body>
+      <body className="mx-auto max-w-7xl">
         <Header />
         <Banner />
         {children}

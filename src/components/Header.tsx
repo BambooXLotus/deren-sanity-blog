@@ -1,8 +1,7 @@
+import deren48 from '@/images/deren-48.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-
-import deren48 from '../../public/images/deren-48.png'
 
 const Header = () => {
   return (
@@ -13,7 +12,14 @@ const Header = () => {
         </Link>
         <h1>DEREN SANITY BLOG</h1>
       </div>
-      <div></div>
+      <div>
+        <Link
+          href="/studio"
+          className="flex items-center rounded-full bg-gray-900 px-5 py-3 text-sm text-yellow-500 md:text-base"
+        >
+          Sign In
+        </Link>
+      </div>
     </header>
   )
 }

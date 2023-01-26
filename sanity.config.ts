@@ -2,6 +2,7 @@ import { visionTool } from '@sanity/vision';
 import StudioNavbar from 'components/StudioNavbar';
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
+import { getDefaultDocumentNode } from 'utils/structure';
 
 import { schemaTypes } from './schemas';
 import { myTheme } from './theme';
@@ -15,7 +16,11 @@ export default defineConfig({
   title: 'Deren Sanity Blog Studio',
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool(
+    {
+      defaultDocumentNode: getDefaultDocumentNode
+    }
+  ), visionTool()],
   schema: {
     types: schemaTypes,
   },

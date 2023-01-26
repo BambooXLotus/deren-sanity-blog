@@ -5,6 +5,7 @@ import {client} from 'lib/sanity.client'
 import PreviewSuspense from '@/components/PreviewSuspense'
 import BlogList from '@/components/BlogList'
 import type {Post} from 'types'
+import PreviewBlogList from '@/components/PreviewBlogList'
 
 const query = groq`
   *[_type=='post'] {
@@ -25,7 +26,9 @@ async function HomePage() {
             </p>
           </div>
         }
-      ></PreviewSuspense>
+      >
+        <PreviewBlogList query={query} />
+      </PreviewSuspense>
     )
   }
 

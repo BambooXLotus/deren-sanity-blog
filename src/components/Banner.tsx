@@ -13,7 +13,8 @@ function Banner() {
       </div>
 
       <p className="mt-5 max-w-sm text-gray-400 md:mt-2">
-        New product features | The latest in technology | the weekly debugging nightmares & More!
+        Built in NextJS Version 13 | SanityIO v3 /w built in Studio | TailwindsCSS | Typescript &
+        more!
       </p>
     </div>
   )
