@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import {urlFor} from 'lib/helpers'
 import * as NextImage from 'next/image'
 import Link from 'next/link'
@@ -11,13 +14,13 @@ export const RichTextComponents = {
     </div>
   ),
   list: {
-    bullet: ({children}) => <ul className="ml-10 list-disc space-y-5 py-5">{children}</ul>,
+    bullet: ({children}: any) => <ul className="ml-10 list-disc space-y-5 py-5">{children}</ul>,
     number: ({children}: {children: React.ReactNode}) => (
       <ol className="mt-lg list-decimal">{children}</ol>
     ),
   },
   block: {
-    h1: ({children}) => <h1 className="py-10 text-5xl font-bold">{children}</h1>,
+    h1: ({children}: any) => <h1 className="py-10 text-5xl font-bold">{children}</h1>,
     h2: ({children}: {children: React.ReactNode}) => (
       <h2 className="py-10 text-4xl font-bold">{children}</h2>
     ),

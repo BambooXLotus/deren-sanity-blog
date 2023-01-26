@@ -9,6 +9,7 @@ type PreviewBlogListProps = {
 }
 
 export default function PreviewBlogList({query}: PreviewBlogListProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const posts: Post[] = usePreview(null, query)
 
   return <BlogList posts={posts} />

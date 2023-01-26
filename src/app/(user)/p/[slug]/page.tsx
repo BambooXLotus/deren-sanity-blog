@@ -12,7 +12,25 @@ type SlugPageProps = {
   }
 }
 
-const query = groq`
+export const revalidate = 60
+export async function generateStaticParams() {
+  const slugQuery = groq`
+  *[_type=='post']
+  {
+    slug
+  }
+`
+  const posts: Post[] = await client.fetch(slugQuery)
+
+  const slugRoutes = posts.map((post) => post.slug.current)
+
+  return slugRoutes.map((slug) => ({
+    slug,
+  }))
+}
+
+async function SlugPage({params: {slug}}: SlugPageProps) {
+  const postQuery = groq`
   *[_type=='post' && slug.current == $slug][0]
   {
     ...,
@@ -20,9 +38,7 @@ const query = groq`
     categories[]->
   }
 `
-
-async function SlugPage({params: {slug}}: SlugPageProps) {
-  const post: Post = await client.fetch(query, {slug})
+  const post: Post = await client.fetch(postQuery, {slug})
 
   return (
     <article className="px-10 pb-28">
@@ -85,7 +101,9 @@ async function SlugPage({params: {slug}}: SlugPageProps) {
         <PortableText
           content={post.body}
           serializers={{
-            h1: ({children}) => <h1 className="py-10 text-5xl font-bold">{children}</h1>,
+            h1: ({children}: {children: React.ReactNode}) => (
+              <h1 className="py-10 text-5xl font-bold">{children}</h1>
+            ),
             h2: ({children}: {children: React.ReactNode}) => (
               <h2 className="py-10 text-4xl font-bold">{children}</h2>
             ),
@@ -95,8 +113,11 @@ async function SlugPage({params: {slug}}: SlugPageProps) {
             h4: ({children}: {children: React.ReactNode}) => (
               <h4 className="py-10 text-2xl font-bold">{children}</h4>
             ),
-            li: ({children}: any) => <li className="ml-4 list-disc">{children}</li>,
+            li: ({children}: {children: React.ReactNode}) => (
+              <li className="ml-4 list-disc">{children}</li>
+            ),
             link: ({href, children}: any) => (
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               <a href={href} className="hove:underline text-blue-500">
                 {children}
               </a>

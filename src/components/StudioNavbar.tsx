@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import Link from 'next/link'
 import {ArrowUturnLeftIcon} from '@heroicons/react/24/solid'
 
@@ -12,6 +14,7 @@ const StudioNavbar = (props: any) => {
 
         <div></div>
       </div>
+
       <>{props.renderDefault(props)}</>
     </div>
   )

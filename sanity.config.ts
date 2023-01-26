@@ -30,5 +30,5 @@ export default defineConfig({
       navbar: StudioNavbar
     }
   },
-  theme: myTheme
+  // theme: myTheme
 })
