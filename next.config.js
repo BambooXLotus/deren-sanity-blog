@@ -1,13 +1,9 @@
-/** @type {import("next").NextConfig} */
-const config = {
-  reactStrictMode: true,
-  /* If trying out the experimental appDir, comment the i18n config out
-   * @see https://github.com/vercel/next.js/issues/41980 */
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
+  swcMinify: true,
   experimental: {
+    // Required:
     appDir: true,
   },
   images: {
@@ -15,4 +11,4 @@ const config = {
   },
 }
 
-module.exports = config
+module.exports = nextConfig
